@@ -2,7 +2,7 @@
   <v-col>
     <h1>Áreas</h1>
     <v-row>
-      <v-col v-for="app in appliations" :key="app.id" cols="4">
+      <v-col v-for="app in appliations" :key="app.id" cols="12" md="6">
         <v-card height="200" :href="app.to">
           <v-card-title>
             <v-icon> {{ app.icon }}</v-icon>
