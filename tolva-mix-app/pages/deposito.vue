@@ -75,6 +75,26 @@ export default {
           title: "Home",
           to: "/",
         },
+        {
+          icon: "mdi-plus",
+          title: "Agregar Insumo",
+          to: "/",
+        },
+        {
+          icon: "mdi-database-search",
+          title: "Buscar Insumo",
+          to: "/",
+        },
+        {
+          icon: "mdi-delete",
+          title: "Eliminar Insumo",
+          to: "/",
+        },
+        {
+          icon: "mdi-pencil",
+          title: "Editar Insumo",
+          to: "/",
+        },
       ],
       miniVariant: false,
       right: true,

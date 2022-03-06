@@ -75,6 +75,31 @@ export default {
           title: "Home",
           to: "/",
         },
+        {
+          icon: "mdi-plus",
+          title: "Agregar Producto",
+          to: "/",
+        },
+        {
+          icon: "mdi-database-search",
+          title: "Buscar Producto",
+          to: "/",
+        },
+        {
+          icon: "mdi-delete",
+          title: "Eliminar Producto",
+          to: "/",
+        },
+        {
+          icon: "mdi-pencil",
+          title: "Editar Producto",
+          to: "/",
+        },
+        {
+          icon: "mdi-clipboard-edit",
+          title: "Control de Calidad",
+          to: "/",
+        },
       ],
       miniVariant: false,
       right: true,

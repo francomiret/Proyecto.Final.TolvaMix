@@ -75,6 +75,16 @@ export default {
           title: "Home",
           to: "/",
         },
+        {
+          icon: "mdi-plus",
+          title: "Comenzar Trabajo",
+          to: "/",
+        },
+        {
+          icon: "mdi-pipe-wrench",
+          title: "Ajustes de Calidad",
+          to: "/",
+        },
       ],
       miniVariant: false,
       right: true,

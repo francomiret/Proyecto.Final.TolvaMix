@@ -75,6 +75,31 @@ export default {
           title: "Home",
           to: "/",
         },
+        {
+          icon: "mdi-plus",
+          title: "Registrar Venta",
+          to: "/",
+        },
+        {
+          icon: "mdi-content-save",
+          title: "Reservar Entrega",
+          to: "/",
+        },
+        {
+          icon: "mdi-database-search",
+          title: "Buscar Venta",
+          to: "/",
+        },
+        {
+          icon: "mdi-database-search",
+          title: "Consultar Entrega",
+          to: "/",
+        },
+        {
+          icon: "mdi-delete",
+          title: "Cancelar Venta",
+          to: "/",
+        },
       ],
       miniVariant: false,
       right: true,
