@@ -71,15 +71,15 @@ export default {
       fixed: false,
       items: [
         {
-          icon: "mdi-apps",
-          title: "Welcome",
+          icon: "mdi-home",
+          title: "Home",
           to: "/",
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Tolva Mix",
+      title: "Tolva Mix | Producción",
     };
   },
 };
