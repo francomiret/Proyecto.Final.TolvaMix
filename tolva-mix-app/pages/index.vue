@@ -3,12 +3,14 @@
     <h1>Áreas</h1>
     <v-row>
       <v-col v-for="app in appliations" :key="app.id" cols="12" md="6">
-        <v-card height="200" :href="app.to">
-          <v-card-title>
-            <v-icon class="mr-2">{{ app.icon }}</v-icon>
-            {{ app.name }}
-          </v-card-title>
-        </v-card>
+        <nuxt-link :to="app.to" class="text-decoration-none">
+          <v-card height="200">
+            <v-card-title>
+              <v-icon class="mr-2">{{ app.icon }}</v-icon>
+              {{ app.name }}
+            </v-card-title>
+          </v-card>
+        </nuxt-link>
       </v-col>
     </v-row>
   </v-col>
@@ -24,25 +26,25 @@ export default {
           id: 1,
           name: "Producción",
           icon: "mdi-account-hard-hat",
-          to: "/produccion",
+          to: "/production",
         },
         {
           id: 2,
           name: "Ventas",
           icon: "mdi-account-cash",
-          to: "/ventas",
+          to: "/sales",
         },
         {
           id: 3,
           name: "Oficina Técnica",
           icon: "mdi-cog",
-          to: "/oficina-tecnica",
+          to: "/office",
         },
         {
           id: 4,
           name: "Pañol",
           icon: "mdi-semantic-web",
-          to: "/deposito",
+          to: "/deposit",
         },
       ],
     };
