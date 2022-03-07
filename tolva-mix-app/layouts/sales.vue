@@ -15,7 +15,7 @@ export default {
         {
           icon: "mdi-plus",
           title: "Registrar Venta",
-          to: "/sales/calendar",
+          to: "/sales/sale",
         },
         {
           icon: "mdi-content-save",
