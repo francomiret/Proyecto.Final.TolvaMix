@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Ventas</h1>
+    <h1>Calendario de ventas</h1>
     <NuxtLink to="/">Home page</NuxtLink>
   </v-container>
 </template>

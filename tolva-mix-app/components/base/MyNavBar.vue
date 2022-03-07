@@ -1,10 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="drawer" app>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -22,7 +18,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar :clipped-left="clipped" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon to="/">
         <v-icon>mdi-home</v-icon>
@@ -30,7 +26,9 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
     </v-app-bar>
-    <slot/>
+    <v-main>
+      <slot />
+    </v-main>
   </v-app>
 </template>
 
