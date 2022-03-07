@@ -2,12 +2,12 @@
   <v-col>
     <h1>Áreas</h1>
     <v-row>
-      <v-col v-for="app in appliations" :key="app.id" cols="12" md="6">
-        <nuxt-link :to="app.to" class="text-decoration-none">
+      <v-col v-for="item in menu" :key="'main-item-' + item.id" cols="12" md="6">
+        <nuxt-link :to="item.to" class="text-decoration-none">
           <v-card height="200">
             <v-card-title>
-              <v-icon class="mr-2">{{ app.icon }}</v-icon>
-              {{ app.name }}
+              <v-icon class="mr-2">{{ item.icon }}</v-icon>
+              {{ item.name }}
             </v-card-title>
           </v-card>
         </nuxt-link>
@@ -21,7 +21,7 @@ export default {
   name: "IndexPage",
   data() {
     return {
-      appliations: [
+      menu: [
         {
           id: 1,
           name: "Producción",
