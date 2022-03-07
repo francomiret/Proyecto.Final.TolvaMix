@@ -5,7 +5,7 @@
       <v-col v-for="app in appliations" :key="app.id" cols="12" md="6">
         <v-card height="200" :href="app.to">
           <v-card-title>
-            <v-icon> {{ app.icon }}</v-icon>
+            <v-icon class="mr-2">{{ app.icon }}</v-icon>
             {{ app.name }}
           </v-card-title>
         </v-card>
