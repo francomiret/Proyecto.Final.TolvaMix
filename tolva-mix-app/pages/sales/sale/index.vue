@@ -12,29 +12,11 @@ export default {
   layout: 'sales',
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          title: 'Tolva mono eje #1',
-          to: '/sales/sale/1',
-        },
-        {
-          id: 2,
-          title: 'Tolva mono eje #2',
-          to: '/sales/sale/2',
-        },
-        {
-          id: 3,
-          title: 'Tolva doble eje #1',
-          to: '/sales/sale/3',
-        },
-        {
-          id: 4,
-          title: 'Tolva doble eje #2',
-          to: '/sales/sale/4',
-        }
-      ]
+      products: []
     }
+  },
+  mounted() {
+    this.products = this.$productService.all()
   }
 };
 </script>
