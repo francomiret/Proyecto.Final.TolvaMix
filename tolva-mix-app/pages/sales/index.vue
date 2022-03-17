@@ -1,12 +1,19 @@
 <template>
   <v-container>
     <h1>Ventas</h1>
-    <NuxtLink to="/">Home page</NuxtLink>
+    <MyList :items="menu" />
   </v-container>
 </template>
 
 <script>
+import MyList from '@/components/base/MyList'
 export default {
+  components: {MyList},
   layout: 'sales',
-};
+  computed: {
+    menu() {
+      return this.$menuService.getSalesMenu()
+    }
+  }
+}
 </script>

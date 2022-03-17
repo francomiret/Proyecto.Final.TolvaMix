@@ -10,35 +10,13 @@ export default {
   components: {MyNavBar},
   data() {
     return {
-      title: "Tolva Mix | Ventas",
-      menu: [
-        {
-          icon: "mdi-plus",
-          title: "Registrar Venta",
-          to: "/sales/sale",
-        },
-        {
-          icon: "mdi-content-save",
-          title: "Reservar Entrega",
-          to: "/",
-        },
-        {
-          icon: "mdi-database-search",
-          title: "Buscar Venta",
-          to: "/",
-        },
-        {
-          icon: "mdi-database-search",
-          title: "Consultar Entrega",
-          to: "/",
-        },
-        {
-          icon: "mdi-delete",
-          title: "Cancelar Venta",
-          to: "/",
-        },
-      ],
+      title: "Tolva Mix | Ventas"
     };
+  },
+  computed: {
+    menu() {
+      return this.$menuService.getSalesMenu()
+    }
   },
 };
 </script>

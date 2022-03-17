@@ -10,20 +10,13 @@ export default {
   components: {MyNavBar},
   data() {
     return {
-      title: "Tolva Mix | Producción",
-      menu: [
-        {
-          icon: "mdi-plus",
-          title: "Comenzar Trabajo",
-          to: "/",
-        },
-        {
-          icon: "mdi-pipe-wrench",
-          title: "Ajustes de Calidad",
-          to: "/",
-        },
-      ],
+      title: "Tolva Mix | Producción"
     };
   },
+  computed: {
+    menu() {
+      return this.$menuService.getProductionMenu()
+    }
+  }
 };
 </script>
