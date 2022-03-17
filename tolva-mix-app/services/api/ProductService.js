@@ -3,22 +3,22 @@ export default class ProductService {
     {
       id: 1,
       title: 'Tolva mono eje #1',
-      to: '/sales/sale/1',
+      nextAvailableDate: '2022-06-21',
     },
     {
       id: 2,
       title: 'Tolva mono eje #2',
-      to: '/sales/sale/2',
+      nextAvailableDate: '2022-04-21',
     },
     {
       id: 3,
       title: 'Tolva doble eje #1',
-      to: '/sales/sale/3',
+      nextAvailableDate: '2022-03-26',
     },
     {
       id: 4,
       title: 'Tolva doble eje #2',
-      to: '/sales/sale/4',
+      nextAvailableDate: '2022-05-01',
     }
   ]
 

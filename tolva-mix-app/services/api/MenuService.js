@@ -2,29 +2,14 @@ export default class MenuService {
   getSalesMenu() {
     return [
       {
-        icon: "mdi-plus",
-        title: "Registrar Venta",
-        to: "/sales/sale",
+        icon: "mdi-calendar-search",
+        title: "Consultar Fecha de Entrega",
+        to: "/sales/create",
       },
       {
-        icon: "mdi-content-save",
-        title: "Reservar Entrega",
-        to: "/",
-      },
-      {
-        icon: "mdi-database-search",
-        title: "Buscar Venta",
-        to: "/",
-      },
-      {
-        icon: "mdi-database-search",
-        title: "Consultar Entrega",
-        to: "/",
-      },
-      {
-        icon: "mdi-delete",
-        title: "Cancelar Venta",
-        to: "/",
+        icon: "mdi-account-search",
+        title: "Consultar Ventas",
+        to: "/sales/query",
       },
     ]
   }
