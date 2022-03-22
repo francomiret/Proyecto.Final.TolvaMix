@@ -60,22 +60,22 @@ export default class MenuService {
     return [
       {
         icon: "mdi-plus",
-        title: "Agregar Insumo",
+        title: "Agregar Recurso",
         to: "/deposit/add",
       },
       {
         icon: "mdi-database-search",
-        title: "Buscar Insumo",
+        title: "Buscar Recurso",
         to: "/deposit/search",
       },
       {
         icon: "mdi-delete",
-        title: "Eliminar Insumo",
+        title: "Eliminar Recurso",
         to: "/deposit/remove",
       },
       {
         icon: "mdi-pencil",
-        title: "Editar Insumo",
+        title: "Editar Recurso",
         to: "/deposit/edit",
       },
     ];
