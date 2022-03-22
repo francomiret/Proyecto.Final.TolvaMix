@@ -11,7 +11,7 @@ export default class MenuService {
         title: "Consultar Ventas",
         to: "/sales/query",
       },
-    ]
+    ];
   }
   getProductionMenu() {
     return [
@@ -25,7 +25,7 @@ export default class MenuService {
         title: "Ajustes de Calidad",
         to: "/",
       },
-    ]
+    ];
   }
   getOfficeMenu() {
     return [
@@ -54,15 +54,10 @@ export default class MenuService {
         title: "Control de Calidad",
         to: "/",
       },
-    ]
+    ];
   }
   getDepositMenu() {
     return [
-      {
-        icon: "mdi-view-dashboard",
-        title: "Dashboard",
-        to: "/deposit",
-      },
       {
         icon: "mdi-plus",
         title: "Agregar Insumo",
@@ -83,6 +78,6 @@ export default class MenuService {
         title: "Editar Insumo",
         to: "/deposit/edit",
       },
-    ]
+    ];
   }
 }
