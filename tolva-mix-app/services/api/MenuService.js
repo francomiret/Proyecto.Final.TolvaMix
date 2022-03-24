@@ -59,24 +59,14 @@ export default class MenuService {
   getDepositMenu() {
     return [
       {
-        icon: "mdi-plus",
-        title: "Agregar Recurso",
-        to: "/deposit/add",
+        icon: "mdi-table",
+        title: "Recursos Disponibles",
+        to: "/deposit",
       },
       {
-        icon: "mdi-database-search",
-        title: "Buscar Recurso",
-        to: "/deposit/search",
-      },
-      {
-        icon: "mdi-delete",
-        title: "Eliminar Recurso",
-        to: "/deposit/remove",
-      },
-      {
-        icon: "mdi-pencil",
-        title: "Editar Recurso",
-        to: "/deposit/edit",
+        icon: "mdi-keyboard-return",
+        title: "Registrar Devolución",
+        to: "/deposit/return",
       },
     ];
   }
