@@ -11,6 +11,9 @@
       <v-list-item-content>
         <v-list-item-title v-text="item.title" />
       </v-list-item-content>
+      <v-list-item-action v-for="(action, i) in item.actions" :key="i">
+        <v-btn text color="primary">{{ action }}</v-btn>
+      </v-list-item-action>
     </v-list-item>
   </v-list>
 </template>
@@ -24,18 +27,16 @@ export default {
     },
     icon: {
       type: String,
-      default: '',
-    }
+      default: "",
+    },
   },
   computed: {
     sortItems() {
       // TODO Add search box
-      return this.items
-    }
-  }
-}
+      return this.items;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
