@@ -437,9 +437,9 @@ export default {
 
   methods: {
     takeSteel(item) {
-      this.stock.editedIndex = this.steels.indexOf(item);
-      this.stock.editedItem = Object.assign({}, item);
-      this.stock.takeDialog = true;
+      this.steel.editedIndex = this.steels.indexOf(item);
+      this.steel.editedItem = Object.assign({}, item);
+      this.steel.takeDialog = true;
     },
 
     takeStock(item) {
