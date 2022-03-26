@@ -13,14 +13,13 @@
             single-line
             hide-details
           ></v-text-field>
-          <template v-slot:item.type="{ item }">
-            <v-chip small :color="getColor(item.type)" dark>
-              {{ item.type }}
-            </v-chip>
-          </template>
         </v-toolbar>
       </template>
-
+      <template v-slot:item.type="{ item }">
+        <v-chip small :color="getColor(item.type)" dark>
+          {{ item.type }}
+        </v-chip>
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-btn small text color="primary" @click="returnItem(item)">
           DEVOLVER

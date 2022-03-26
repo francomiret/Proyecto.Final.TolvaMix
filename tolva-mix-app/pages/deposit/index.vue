@@ -183,7 +183,7 @@
                       <v-select
                         v-model="steel.editedItem.select"
                         :items="steel.steelType"
-                        label="Tipo de insumo"
+                        label="Tipo de herramenta"
                       ></v-select>
                       <v-text-field
                         v-model="steel.editedItem.brand"
