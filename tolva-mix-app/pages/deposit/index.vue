@@ -63,7 +63,7 @@
                       type="number"
                     ></v-text-field>
                     <v-text-field
-                      v-model="stock.editedItem.loation"
+                      v-model="stock.editedItem.location"
                       label="Ubicación"
                       type="text"
                     ></v-text-field>
@@ -204,7 +204,7 @@
                         type="number"
                       ></v-text-field>
                       <v-text-field
-                        v-model="steel.editedItem.loation"
+                        v-model="steel.editedItem.location"
                         label="Ubicación"
                         type="text"
                       ></v-text-field>
