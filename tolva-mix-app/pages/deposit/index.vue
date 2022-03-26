@@ -10,16 +10,28 @@
         <v-data-table
           :headers="stock.headers"
           :items="stocks"
+          :search="stockSearch"
           class="elevation-1"
         >
           <template v-slot:top>
             <v-toolbar flat>
+              <v-toolbar-title>Insumos Disponibles</v-toolbar-title>
+              <v-divider class="mx-4" inset vertical></v-divider>
+              <v-spacer></v-spacer>
+              <v-text-field
+                v-model="stockSearch"
+                class="ma-4"
+                append-icon="mdi-magnify"
+                label="Buscar"
+                single-line
+                hide-details
+              ></v-text-field>
               <v-dialog v-model="stock.dialog" max-width="500px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     color="primary"
                     dark
-                    class="mb-2"
+                    class="m-2"
                     v-bind="attrs"
                     v-on="on"
                   >
@@ -135,10 +147,22 @@
           <v-data-table
             :headers="steel.headers"
             :items="steels"
+            :search="steelSearch"
             class="elevation-1"
           >
             <template v-slot:top>
               <v-toolbar flat>
+                <v-toolbar-title>Herramientas Disponibles</v-toolbar-title>
+                <v-divider class="mx-4" inset vertical></v-divider>
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="steelSearch"
+                  class="ma-4"
+                  append-icon="mdi-magnify"
+                  label="Buscar"
+                  single-line
+                  hide-details
+                ></v-text-field>
                 <v-dialog v-model="steel.dialog" max-width="500px">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
@@ -271,6 +295,8 @@
 export default {
   layout: "deposit",
   data: () => ({
+    steelSearch: "",
+    stockSearch: "",
     // steels harcoded data
     steels: [
       {
@@ -490,6 +516,7 @@ export default {
         this.stock.editedIndex = -1;
       });
     },
+
     closeSteel() {
       this.steel.takeDialog = false;
       this.steel.dialog = false;
@@ -506,6 +533,7 @@ export default {
         this.stock.editedIndex = -1;
       });
     },
+
     closeDeleteSteel() {
       this.steel.dialogDelete = false;
       this.$nextTick(() => {
