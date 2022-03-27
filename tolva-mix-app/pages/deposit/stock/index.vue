@@ -97,8 +97,8 @@
           </v-dialog>
           <v-dialog v-model="stock.dialogDelete" max-width="500px">
             <v-card>
-              <v-card-title class="text-h5"
-                >¿Esta seguro que desea eliminar este insumo?</v-card-title
+              <v-card-subtitle class="text-h5"
+                >¿Esta seguro que desea eliminar este insumo?</v-card-subtitle
               >
               <v-card-actions>
                 <v-spacer></v-spacer>

@@ -28,8 +28,8 @@
     </v-data-table>
     <v-dialog v-model="dialog" max-width="500px">
       <v-card>
-        <v-card-title class="text-h5"
-          >¿Esta seguro que desea devolver este recurso?</v-card-title
+        <v-card-subtitle class="text-h5"
+          >¿Esta seguro que desea devolver este recurso?</v-card-subtitle
         >
         <v-card-actions>
           <v-spacer></v-spacer>
