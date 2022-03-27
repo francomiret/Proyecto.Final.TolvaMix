@@ -30,29 +30,14 @@ export default class MenuService {
   getOfficeMenu() {
     return [
       {
-        icon: "mdi-plus",
-        title: "Agregar Producto",
-        to: "/",
-      },
-      {
-        icon: "mdi-database-search",
-        title: "Buscar Producto",
-        to: "/",
-      },
-      {
-        icon: "mdi-delete",
-        title: "Eliminar Producto",
-        to: "/",
-      },
-      {
-        icon: "mdi-pencil",
-        title: "Editar Producto",
-        to: "/",
+        icon: "mdi-table",
+        title: "Productos",
+        to: "/office/products",
       },
       {
         icon: "mdi-clipboard-edit",
         title: "Control de Calidad",
-        to: "/",
+        to: "/office/qa",
       },
     ];
   }
