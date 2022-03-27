@@ -60,8 +60,13 @@ export default class MenuService {
     return [
       {
         icon: "mdi-table",
-        title: "Recursos Disponibles",
-        to: "/deposit",
+        title: "Herramientas Disponibles",
+        to: "/deposit/steel",
+      },
+      {
+        icon: "mdi-table",
+        title: "Insumos Disponibles",
+        to: "/deposit/stock",
       },
       {
         icon: "mdi-keyboard-return",
