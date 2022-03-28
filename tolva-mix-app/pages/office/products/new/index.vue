@@ -282,7 +282,7 @@
                   label="Nombre"
                 ></v-text-field>
                 <v-select
-                  v-model="stage.editedItem.select"
+                  v-model="stage.editedItem.area"
                   :items="stage.stageType"
                   label="Área"
                 ></v-select>
@@ -313,7 +313,10 @@
                     </v-chip>
                   </template>
                 </v-combobox>
-                <v-textarea label="Descripción"></v-textarea>
+                <v-textarea
+                  v-model="stage.editedItem.description"
+                  label="Descripción"
+                ></v-textarea>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
