@@ -139,13 +139,15 @@ export default {
       {
         select: "Alambre",
         brand: "Sarmiento",
-        quantity: 222,
+        unit: "Metros",
+        quantity: 222.2,
         code: 2,
         location: "B35",
       },
       {
         select: "Electrodos",
         brand: "",
+        unit: "Unidades",
         quantity: 800,
         code: 3,
         location: "B36",
@@ -153,7 +155,8 @@ export default {
       {
         select: "Grasa",
         brand: "",
-        quantity: 3,
+        unit: "Litros",
+        quantity: 3.7,
         code: 4,
         location: "B37",
       },
@@ -180,6 +183,7 @@ export default {
       headers: [
         { text: "Tipo de Insumo", value: "select" },
         { text: "Marca", value: "brand" },
+        { text: "Unidad de medida", value: "unit" },
         { text: "Cantidad", value: "quantity" },
         { text: "Código", value: "code" },
         { text: "Ubicación", value: "location" },
@@ -188,7 +192,7 @@ export default {
       editedItem: {
         select: null,
         brand: "",
-        quantity: 1,
+        quantity: 1.0,
         code: 0,
         location: "",
       },
@@ -196,7 +200,7 @@ export default {
       defaultItem: {
         select: null,
         brand: "",
-        quantity: 1,
+        quantity: 1.0,
         code: 0,
         location: "",
       },
