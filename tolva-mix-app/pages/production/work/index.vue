@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     showProductionOrder(order) {
-      this.$productionOrderService.startProduction(order)
       this.$router.push(`/production/work/${order.id}`)
     }
   }

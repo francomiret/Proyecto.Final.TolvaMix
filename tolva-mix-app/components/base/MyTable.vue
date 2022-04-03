@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-bind:class="computedClass"
     :headers="tableHeaders"
     :items="computedItems"
     :items-per-page="20"
@@ -75,6 +76,11 @@ export default {
     },
     computedItems() {
       return this.items.map(this.mapItem)
+    },
+    computedClass() {
+      return {
+        'row-pointer': !!this.$listeners['click:row']
+      }
     }
   },
   methods: {
@@ -103,5 +109,7 @@ export default {
 </script>
 
 <style scoped>
-
+.row-pointer >>> tbody tr :hover {
+  cursor: pointer;
+}
 </style>

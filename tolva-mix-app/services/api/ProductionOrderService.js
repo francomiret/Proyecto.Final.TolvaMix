@@ -21,20 +21,18 @@ export default class ProductionOrderService extends BaseService {
     super(DB.productionOrders)
   }
 
-  startProduction(productionOrder) {
-    this.update(productionOrder.id, {status: ProductionOrderStatus.PROGRESS})
+  startProduction(id) {
+    this.update(id, {status: ProductionOrderStatus.PROGRESS})
     // TODO Update workOrder
   }
 
-  stopProduction(productionOrder) {
-    if (productionOrder.status.equals(ProductionOrderStatus.PROGRESS)) {
-      this.update(productionOrder.id, {status: ProductionOrderStatus.PENDING})
-    }
+  stopProduction(id) {
+    this.update(id, {status: ProductionOrderStatus.PENDING})
     // TODO Update workOrder
   }
 
-  completeProduction(productionOrder) {
-    this.update(productionOrder.id, {status: ProductionOrderStatus.FINISHED})
+  completeProduction(id) {
+    this.update(id, {status: ProductionOrderStatus.FINISHED})
     // TODO Update workOrder
   }
 }
