@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="tableHeaders"
-    :items="items"
+    :items="computedItems"
     :items-per-page="20"
     no-data-text="No se encontraron resultados"
     :footer-props="{
@@ -11,9 +11,6 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <template #item.status="data">
-      {{ $t(`status.${data.item.status}`) }}
-    </template>
     <template v-for="slotName in Object.keys($scopedSlots)" #[slotName]="slotScope">
       <slot :name="slotName" v-bind="slotScope" />
     </template>
@@ -24,6 +21,10 @@
 </template>
 
 <script>
+import {isObject, upperFirst} from 'lodash'
+import {isMoment} from 'moment'
+import Enum from '@/services/Enum'
+
 export default {
   props: {
     headers: {
@@ -40,28 +41,62 @@ export default {
     }
   },
   computed: {
+    computedHeaders() {
+      if (this.include) {
+        return this.include.map(value => ({
+          text: this.$t(`headers.${value}`),
+          sortable: true,
+          value
+        }))
+      }
+      if (this.items.length > 0) {
+        return Object.keys(this.items[0])
+          .map(value => ({
+            text: this.$t(`headers.${value}`),
+            sortable: true,
+            value
+          }))
+      }
+      return []
+    },
     tableHeaders() {
       if (this.headers !== null) {
         return this.headers
       }
-      if (this.items.length > 0) {
-        const headers = Object.keys(this.items[0])
-          .filter(key => this.include === null || this.include.includes(key))
-          .map(key => ({
-            text: this.$t(`headers.${key}`),
-            sortable: true,
-            value: key
-          }))
-        if (this.$scopedSlots['item.actions']) {
-          headers.push({
-            text: 'Acciones',
-            sortable: false,
-            value: 'actions'
-          })
-        }
-        return headers
+      const headers = this.computedHeaders
+      if (this.$scopedSlots['item.actions']) {
+        headers.push({
+          text: 'Acciones',
+          sortable: false,
+          value: 'actions'
+        })
       }
-      return []
+      return headers
+    },
+    computedItems() {
+      return this.items.map(this.mapItem)
+    }
+  },
+  methods: {
+    mapItem(item) {
+      let result = {}
+      Object.keys(item).forEach(key => {
+        const value = item[key]
+        if (isMoment(value)) {
+          result[key] = upperFirst(value.calendar())
+          return
+        }
+        if (value instanceof Enum) {
+          result[key] = this.$t(value.toLocale())
+          return
+        }
+        if (isObject(value)) {
+          result[key] = this.mapItem(value)
+          return
+        }
+        result[key] = value
+      })
+      return result
     }
   }
 }

@@ -4,11 +4,24 @@
     "title": "Título",
     "status": "Estado",
     "location": "Localización",
-    "justification": "Justificación"
+    "justification": "Justificación",
+    "quantity": "Cantidad",
+    "expected_start_at": "Inicio esperado",
+    "expected_end_at": "Fin esperado",
+    "part": {
+      "title": "Parte"
+    },
+    "input": {
+      "id": "ID",
+      "title": "Insumo"
+    }
   },
-  "status": {
+  "enums": {
     "PENDING": "Pendiente",
     "APPROVED": "Aprobado",
+    "PROGRESS": "En Progreso",
+    "QUALITY_CONTROL": "Control de Calidad",
+    "FINISHED": "Finalizado",
     "REJECTED": "Rechazado"
   },
   "close": "Cerrar",

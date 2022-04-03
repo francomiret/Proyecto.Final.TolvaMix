@@ -18,7 +18,7 @@ export default {
   mounted() {
     this.items = this.$salesService.all().map((p) => ({
       id: p.id,
-      title: p.product.title + ' - ' + p.client + ' - ' + p.deliveryDate,
+      title: p.product.title + ' - ' + p.client.title + ' - ' + p.deliveryDate,
     }))
   }
 };

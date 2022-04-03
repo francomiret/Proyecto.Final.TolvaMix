@@ -1,4 +1,4 @@
-import {cloneDeep, isInteger, isObject, sortBy} from 'lodash'
+import {cloneDeep, get, isInteger, isObject, sortBy} from 'lodash'
 
 export class Query {
   constructor(items) {
@@ -13,13 +13,13 @@ export class Query {
   }
 
   where(key, op, value) {
-    this.resultItems = this.resultItems.filter((item) => this.compare(item[key], op, value))
+    this.resultItems = this.resultItems.filter((item) => this.compare(get(item, key), op, value))
     return this
   }
 
   compare(current, op, expected) {
     if (expected === undefined) {
-      return this.compare(current, '=', expected)
+      return this.compare(current, '=', op)
     }
     expected = this.normalize(expected)
     current = this.normalize(current)
@@ -57,7 +57,9 @@ export class Query {
 }
 
 export default class BaseService {
-  items = []
+  constructor(items) {
+    this.items = items
+  }
 
   all() {
     return this.items

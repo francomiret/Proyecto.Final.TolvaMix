@@ -1,9 +1,9 @@
 <template>
   <MySection :title="`Control de calidad - ${item.title}`">
     <MyInfo>
-      El nuevo estado de la planilla será <strong>{{ $t(`status.${item.status}`) }}</strong>
+      El nuevo estado de la planilla será <strong>{{ $t(item.status.toLocale()) }}</strong>
     </MyInfo>
-    <MySection :title="`Detalles`">
+    <MySection title="Detalles">
       <MyTable :items="item.details">
         <template #item.justification="{ item }">
           {{ item.justification? item.justification : '-' }}

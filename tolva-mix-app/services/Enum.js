@@ -10,4 +10,8 @@ export default class Enum {
   equals(value) {
     return this.value === value.value
   }
+
+  toLocale() {
+    return `enums.${this.value}`
+  }
 }
