@@ -18,7 +18,7 @@ export default class MenuService {
       {
         icon: "mdi-plus",
         title: "Comenzar Trabajo",
-        to: "/",
+        to: "/production/work",
       },
       {
         icon: "mdi-pipe-wrench",

@@ -39,7 +39,11 @@ export default {
     },
     clickReserve() {
       this.$salesService.create({
-        client: this.client,
+        client: {
+          // TODO Use a client service please!
+          id: this.client,
+          title: this.client
+        },
         deliveryDate: this.date,
         product: this.item,
       })
