@@ -1,7 +1,14 @@
 {
   "headers": {
     "id": "ID",
+    "type": "Tipo",
     "title": "Título",
+    "length": "Largo (m)",
+    "width": "Ancho (m)",
+    "high": "Alto (m)",
+    "weight": "Peso (Kg)",
+    "chargeCapacity": "Capacidad de carga (kg)",
+    "litersHydraulicPump": "Bomba hidráulica (lts)",
     "status": "Estado",
     "location": "Localización",
     "justification": "Justificación",
@@ -21,6 +28,7 @@
     "APPROVED": "Aprobado",
     "PROGRESS": "En Progreso",
     "QUALITY_CONTROL": "Control de Calidad",
+    "QUALITY_ADJUSTMENT": "Ajuste de Calidad",
     "FINISHED": "Finalizado",
     "REJECTED": "Rechazado"
   },

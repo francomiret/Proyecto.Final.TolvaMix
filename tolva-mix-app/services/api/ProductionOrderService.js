@@ -12,6 +12,7 @@ export class ProductionOrderStatus extends Enum {
   static PENDING = new ProductionOrderStatus('PENDING')
   static PROGRESS = new ProductionOrderStatus('PROGRESS')
   static QUALITY_CONTROL = new ProductionOrderStatus('QUALITY_CONTROL')
+  static QUALITY_ADJUSTMENT = new ProductionOrderStatus('QUALITY_ADJUSTMENT')
   static FINISHED = new ProductionOrderStatus('FINISHED')
   static CANCELED = new ProductionOrderStatus('CANCELED')
 }
