@@ -7,7 +7,7 @@
       <v-col>
         <v-select
           filled
-          v-model="product.select"
+          v-model="product.type"
           :items="productType"
           label="Tipo de producto"
         ></v-select>
@@ -15,7 +15,7 @@
       <v-col>
         <v-text-field
           filled
-          v-model="product.name"
+          v-model="product.title"
           label="Nombre"
         ></v-text-field>
       </v-col>
@@ -313,7 +313,10 @@
                     </v-chip>
                   </template>
                 </v-combobox>
-                <v-textarea v-model="stage.editedItem.description" label="Descripción"></v-textarea>
+                <v-textarea
+                  v-model="stage.editedItem.description"
+                  label="Descripción"
+                ></v-textarea>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -364,15 +367,18 @@
       <v-btn class="ma-2" @click="close" to="/office/products">
         CANCELAR
       </v-btn>
-      <v-btn class="ma-2" color="primary" @click="save" to="/office/products">
-        GUARDAR
-      </v-btn>
+      <v-btn class="ma-2" color="primary" @click="clickSave"> GUARDAR </v-btn>
     </v-row>
   </v-container>
 </template>
 <script>
+import MyTable from "@/components/base/MyTable";
+
 export default {
   layout: "office",
+  components: {
+    MyTable,
+  },
   data: () => ({
     search: "",
     // stages harcoded data
@@ -546,42 +552,7 @@ export default {
       "Tanque para agua",
       "Acelerador de mano",
     ],
-    product: {
-      id: 12,
-      select: "Caja Volcadora",
-      name: "Trivuelco",
-      chargeCapacity: 0,
-      dischargeTime: 0,
-      weight: 0,
-      lenght: 4.5,
-      width: 2.6,
-      high: 0.85,
-      usefulLength: 4.5,
-      usefulWidth: 2.6,
-      usefulHigh: 0.85,
-      topTubeLength: 0,
-      topTubeDiameter: 0,
-      standpipeLength: 0,
-      standpipeDiameter: 0,
-      hasSideDoor: true,
-      hasBackDoor: true,
-      hasStairs: false,
-      hasScales: false,
-      stakeHolder: 0,
-      boquillas: 0,
-      winches: 0,
-      arches: 0,
-      litersHydraulicPump: 170,
-      pto: "Simple neumática incorporada",
-      cylinder: "Telescópico de 5 etapas",
-      accesories: [
-        "Guardabarros redondos con pantallas de goma",
-        "Cajón para herramientas",
-        "Acelerador de mano",
-        "Bandas reflectivas perimetrales reglamentarias",
-        "Luces reglamentarias",
-      ],
-    },
+    product: {},
   }),
 
   computed: {
@@ -625,6 +596,14 @@ export default {
       });
     },
 
+    clickSave() {
+      this.$productService.update(this.product.id, this.product);
+      this.$ioService.toast(
+        `El producto ${this.product.title} se ha editado con éxito!`
+      );
+      this.$router.push({ path: "/office/products" });
+    },
+
     save() {
       if (this.stage.editedIndex > -1) {
         Object.assign(
@@ -636,10 +615,14 @@ export default {
       }
       this.close();
     },
+
     remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = [...this.chips];
     },
+  },
+  mounted() {
+    this.product = this.$productService.find(this.$route.params.id);
   },
 };
 </script>
