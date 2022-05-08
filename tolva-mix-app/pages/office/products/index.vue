@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <MySection title="Productos">
     <MyTable
       :include="includedHeaders"
       :items="products"
@@ -8,8 +8,6 @@
     >
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Productos</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -25,7 +23,12 @@
         </v-toolbar>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn small text color="success" :to="`/office/products/edit/${item.id}`">
+        <v-btn
+          small
+          text
+          color="success"
+          :to="`/office/products/edit/${item.id}`"
+        >
           EDITAR
         </v-btn>
         <TheConfirmDialog
@@ -34,43 +37,43 @@
           @confirm="deleteProduct(item)"
         >
           <template #activator="{ on }">
-            <v-btn small text color="error" v-on="on">
-              BORRAR
-            </v-btn>
+            <v-btn small text color="error" v-on="on"> BORRAR </v-btn>
           </template>
         </TheConfirmDialog>
       </template>
     </MyTable>
-  </div>
+  </MySection>
 </template>
 <script>
-import MyTable from '@/components/base/MyTable'
-import TheConfirmDialog from '@/components/base/dialogs/TheConfirmDialog'
+import MySection from "~/components/base/MySection";
+import MyTable from "~/components/base/MyTable";
+import TheConfirmDialog from "@/components/base/dialogs/TheConfirmDialog";
+
 export default {
-  components: {TheConfirmDialog, MyTable},
-  layout: 'office',
+  components: { TheConfirmDialog, MyTable, MySection },
+  layout: "office",
   data: () => ({
-    search: '',
+    search: "",
     products: [],
     includedHeaders: [
-      'type',
-      'title',
-      'length',
-      'width',
-      'high',
-      'weight',
-      'chargeCapacity',
-      'litersHydraulicPump'
+      "type",
+      "title",
+      "length",
+      "width",
+      "high",
+      "weight",
+      "chargeCapacity",
+      "litersHydraulicPump",
     ],
   }),
   created() {
-    this.products = this.$productService.all()
+    this.products = this.$productService.all();
   },
   methods: {
     deleteProduct(product) {
-      this.$productService.delete(product)
-      this.products = this.$productService.all()
-    }
-  }
+      this.$productService.delete(product);
+      this.products = this.$productService.all();
+    },
+  },
 };
 </script>
