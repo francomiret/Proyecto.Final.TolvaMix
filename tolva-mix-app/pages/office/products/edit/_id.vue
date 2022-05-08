@@ -1,8 +1,6 @@
 <template>
-  <v-container>
-    <v-title>
-      <span class="text-h5">Editar Producto</span>
-    </v-title>
+  <MySection title="Editar Producto">
+    <!-- Mover formulario a un componente aparte -->
     <v-row>
       <v-col>
         <v-select
@@ -78,7 +76,6 @@
         ></v-text-field>
       </v-col>
     </v-row>
-
     <v-row>
       <v-col>
         <v-text-field
@@ -217,19 +214,11 @@
           label="Toma de fuerza"
         ></v-text-field>
       </v-col>
-      <v-col>
-        <v-select
-          filled
-          v-model="product.cylinder"
-          :items="cylinderType"
-          label="Cilindro"
-        ></v-select>
-      </v-col>
     </v-row>
     <v-combobox
       filled
-      v-model="product.accesories"
-      :items="items"
+      v-model="product.accessories"
+      :items="accessories"
       chips
       clearable
       label="Accesorios"
@@ -247,53 +236,46 @@
         </v-chip>
       </template>
     </v-combobox>
-    <v-data-table
-      :headers="stage.headers"
-      :items="stages"
-      :search="search"
-      class="elevation-1"
-    >
-      <template v-slot:top>
-        <v-toolbar flat>
-          <v-toolbar-title>Etapas</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            class="ma-4"
-            append-icon="mdi-magnify"
-            label="Buscar"
-            single-line
-            hide-details
-          ></v-text-field>
-          <v-dialog v-model="stage.dialog" max-width="500px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-                NUEVA ETAPA
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ formTitle }}</span>
-              </v-card-title>
-              <v-card-text>
+    <MySection title="Etapas">
+      <MyTable :items="stages" :search="search" class="elevation-1">
+        <template v-slot:top>
+          <v-toolbar flat>
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              class="ma-4"
+              append-icon="mdi-magnify"
+              label="Buscar"
+              single-line
+              hide-details
+            ></v-text-field>
+            <TheFormDialog @confirm="saveNewStage()">
+              <template #activator="{ on }">
+                <v-btn color="primary" dark class="mb-2" v-on="on">
+                  NUEVA ETAPA
+                </v-btn>
+              </template>
+              <!-- Mover formulario a un componente aparte -->
+              <v-form>
+                <h1>Nuea etapa</h1>
                 <v-text-field
-                  v-model="stage.editedItem.name"
+                  v-model="stage.editedItem.title"
                   label="Nombre"
                 ></v-text-field>
                 <v-select
-                  v-model="stage.editedItem.area"
-                  :items="stage.stageType"
-                  label="Área"
+                  v-model="stage.editedItem.location"
+                  :items="locations"
+                  label="Localización"
                 ></v-select>
                 <v-text-field
-                  v-model="stage.editedItem.time"
+                  v-model="stage.editedItem.productionTimeInHours"
                   label="Tiempo estimado"
                   type="number"
                 ></v-text-field>
+                <!-- Cambiar componente para seleccionar insumo a uno que te deje seleccionar la cantidad neesaria -->
                 <v-combobox
-                  v-model="stage.editedItem.stocks"
-                  :items="stock"
+                  v-model="stage.editedItem.items"
+                  :items="inputs"
                   chips
                   clearable
                   label="Insumos"
@@ -313,316 +295,158 @@
                     </v-chip>
                   </template>
                 </v-combobox>
-                <v-textarea
-                  v-model="stage.editedItem.description"
-                  label="Descripción"
-                ></v-textarea>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">
-                  CANCELAR
-                </v-btn>
-                <v-btn color="blue darken-1" text @click="save">
-                  GUARDAR
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-          <v-dialog v-model="stage.dialogDelete" max-width="500px">
-            <v-card>
-              <v-card-subtitle class="text-h5"
-                >¿Esta seguro que desea eliminar esta etapa?</v-card-subtitle
+              </v-form>
+            </TheFormDialog>
+          </v-toolbar>
+        </template>
+        <template v-slot:item.actions="{ item }">
+          <TheFormDialog @confirm="saveEditStage(item)">
+            <template #activator="{ on }">
+              <v-btn small text color="success" v-on="on"> EDITAR </v-btn>
+            </template>
+            <!-- Mover formulario a un componente aparte -->
+            <v-form>
+              <h1>Editar etapa</h1>
+              <v-text-field v-model="item.title" label="Nombre"></v-text-field>
+              <v-select
+                v-model="item.location"
+                :items="locations"
+                label="Localización"
+              ></v-select>
+              <v-text-field
+                v-model="item.productionTimeInHours"
+                label="Tiempo estimado"
+                type="number"
+              ></v-text-field>
+              <!-- Cambiar componente para seleccionar insumo a uno que te deje seleccionar la cantidad neesaria -->
+              <v-combobox
+                v-model="item.inputs"
+                :items="inputs"
+                chips
+                clearable
+                label="Insumos"
+                multiple
               >
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete"
-                  >CANCELAR</v-btn
-                >
-                <v-btn color="blue darken-1" text @click="deleteConfirm"
-                  >CONFIRMAR</v-btn
-                >
-                <v-spacer></v-spacer>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-toolbar>
-      </template>
-      <template v-slot:item.stocks="{ item }">
-        <v-chip-group active-class="primary--text" column>
-          <v-chip small v-for="tag in item.stocks" :key="tag">
-            {{ tag }}
-          </v-chip>
-        </v-chip-group>
-      </template>
-      <template v-slot:item.actions="{ item }">
-        <v-btn small text color="success" @click="edit(item)"> EDITAR </v-btn>
-        <v-btn small text color="error" @click="deleteItem(item)">
-          BORRAR
-        </v-btn>
-      </template>
-    </v-data-table>
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                  <v-chip
+                    v-bind="attrs"
+                    :input-value="selected"
+                    close
+                    @click="select"
+                    @click:close="remove(item)"
+                  >
+                    {{ item }}
+                  </v-chip>
+                </template>
+              </v-combobox>
+            </v-form>
+          </TheFormDialog>
+          <TheConfirmDialog
+            header-message="Eliminar producto"
+            body-message="¿Desea eliminar este producto?"
+            @confirm="deletePart(item)"
+          >
+            <template #activator="{ on }">
+              <v-btn small text color="error" v-on="on"> BORRAR </v-btn>
+            </template>
+          </TheConfirmDialog>
+        </template>
+      </MyTable>
+    </MySection>
+
     <v-row class="mt-5 mb-5">
       <v-spacer></v-spacer>
-      <v-btn class="ma-2" @click="close" to="/office/products">
-        CANCELAR
+      <v-btn class="ma-2" to="/office/products"> CANCELAR </v-btn>
+      <v-btn class="ma-2" color="primary" @click="updateProduct()">
+        GUARDAR
       </v-btn>
-      <v-btn class="ma-2" color="primary" @click="clickSave"> GUARDAR </v-btn>
     </v-row>
-  </v-container>
+  </MySection>
 </template>
 <script>
+import MySection from "~/components/base/MySection";
 import MyTable from "@/components/base/MyTable";
+import TheConfirmDialog from "@/components/base/dialogs/TheConfirmDialog";
+import TheFormDialog from "~/components/base/dialogs/TheFormDialog";
+import TheDialog from "~/components/base/dialogs/TheDialog";
+import { PartsService } from "@/services/api/PartsService";
+import { ProductService } from "@/services/api/ProductService";
+import { InputsService } from "@/services/api/InputsService";
+import { LocationService } from "@/services/api/LocationService";
+import { AccessoriesService } from "@/services/api/AccessoriesService";
 
 export default {
   layout: "office",
   components: {
+    TheConfirmDialog,
+    TheDialog,
     MyTable,
+    TheFormDialog,
+    MySection,
   },
   data: () => ({
     search: "",
-    // stages harcoded data
-    stages: [
-      {
-        name: "Corte y Plegado de chapas",
-        area: "Corte y plegado",
-        time: 2,
-        description: "Cortar y plegar las chapas segun lo especificado.",
-        stocks: [],
-      },
-      {
-        name: "Autopartes generales",
-        area: "Autopartes",
-        time: 2,
-        description: "",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Torre inferior",
-        area: "Autopartes",
-        time: 10,
-        description: "",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Chimango",
-        area: "Autopartes",
-        time: 12,
-        description: "",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Pasarelas",
-        area: "Autopartes",
-        time: 4,
-        description: "",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Fabricacion del tacho",
-        area: "Tacho",
-        time: 17,
-        description: "Soldar las chapas de Corte y Plegado.",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Montaje",
-        area: "Montaje",
-        time: 85,
-        description: "Unir todas las partes del producto.",
-        stocks: ["Electrodos"],
-      },
-      {
-        name: "Revisión de montaje",
-        area: "Control de calidad",
-        time: 0.5,
-        description: "",
-        stocks: [],
-      },
-      {
-        name: "Lavado",
-        area: "Lavado",
-        time: 1,
-        description: "",
-        stocks: [],
-      },
-      {
-        name: "Pintado",
-        area: "Pintado",
-        time: 1,
-        description: "",
-        stocks: ["Pintura"],
-      },
-      {
-        name: "Revisión de pintado",
-        area: "Control de calidad",
-        time: 0.5,
-        description: "",
-        stocks: [],
-      },
-      {
-        name: "Instalación Eléctrica",
-        area: "Instalación Eléctrica",
-        time: 4,
-        description: "",
-        stocks: ["Cables"],
-      },
-      {
-        name: "Instalación Hidráulica",
-        area: "Instalación Hidráulica",
-        time: 7,
-        description: "",
-        stocks: ["Cables"],
-      },
-      {
-        name: "Prueba de funcionamiento",
-        area: "Control de calidad",
-        time: 1.5,
-        description: "",
-        stocks: [],
-      },
-    ],
-
+    stages: [],
+    inputs: [],
+    locations: [],
+    accessories: [],
     stage: {
-      dialog: false,
-      dialogDelete: false,
-      headers: [
-        { text: "Nombre", value: "name" },
-        { text: "Área", value: "area" },
-        { text: "Tiempo estimado (hs)", value: "time" },
-        { text: "Descripción", value: "description" },
-        { text: "Insumos", value: "stocks" },
-        { text: null, value: "actions", sortable: false },
-      ],
       editedIndex: -1,
-      stageType: [
-        "Corte y plegado",
-        "Autopartes",
-        "Tacho",
-        "Montaje",
-        "Lavado",
-        "Pintado",
-        "Instalación Eléctrica",
-        "Instalación Hidráulica",
-        "Control de Calidad",
-      ],
       editedItem: {
-        name: "",
-        area: "",
-        time: "",
-        description: "",
-        stocks: [],
-      },
-      defaultItem: {
-        name: "",
-        area: "",
-        time: "",
-        description: "",
-        stocks: [],
+        title: "",
+        location: "",
+        productionTimeInHours: "",
+        inputs: [],
       },
     },
     productType: ["Tolva", "Carrosería", "Caja Volcadora"],
-    cylinderType: [
-      'Simple efecto de 8"',
-      "Telescópico de 5 etapas",
-      "2 telescópicos de 3 etapas",
-    ],
-    stock: [
-      "Electrodos",
-      "Bolilleros",
-      "Mechas de taladro",
-      "Alambre",
-      "Alabre de soldadora",
-      "Guantes",
-      "Acople rapido hembra",
-      "Bulones",
-      "Aceite",
-      "Grasa",
-      "Tornillos",
-      "Arandelas",
-    ],
-    items: [
-      "Guardabarros redondos con pantallas de goma",
-      "Cajón para herramientas",
-      "Bandas reflectivas perimetrales reglamentarias",
-      "Luces reglamentarias",
-      "Escalera aérea",
-      "Pasarela antideslizante",
-      "Soporte de rueda de auxilio tipo canasto doble",
-      "Tanque para agua",
-      "Acelerador de mano",
-    ],
     product: {},
   }),
 
-  computed: {
-    formTitle() {
-      return this.stage.editedIndex === -1 ? "Nueva Etapa" : "Editar Etapa";
-    },
-  },
-
   methods: {
-    edit(item) {
-      this.stage.editedIndex = this.stages.indexOf(item);
-      this.stage.editedItem = Object.assign({}, item);
-      this.stage.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.stage.editedIndex = this.stages.indexOf(item);
-      this.stage.editedItem = Object.assign({}, item);
-      this.stage.dialogDelete = true;
-    },
-
-    deleteConfirm() {
-      this.stages.splice(this.stage.editedIndex, 1);
-      this.closeDelete();
-    },
-
-    close() {
-      this.stage.takeDialog = false;
-      this.stage.dialog = false;
-      this.$nextTick(() => {
-        this.stage.editedItem = Object.assign({}, this.stage.defaultItem);
-        this.stage.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.stage.dialogDelete = false;
-      this.$nextTick(() => {
-        this.stage.editedItem = Object.assign({}, this.stage.defaultItem);
-        this.stage.editedIndex = -1;
-      });
-    },
-
-    clickSave() {
+    updateProduct() {
       this.$productService.update(this.product.id, this.product);
-      this.$ioService.toast(
-        `El producto ${this.product.title} se ha editado con éxito!`
-      );
-      this.$router.push({ path: "/office/products" });
-    },
-
-    save() {
-      if (this.stage.editedIndex > -1) {
-        Object.assign(
-          this.stages[this.stage.editedIndex],
-          this.stage.editedItem
-        );
-      } else {
-        this.stages.push(this.stage.editedItem);
-      }
-      this.close();
+      this.$router.push(`/office/products`);
     },
 
     remove(item) {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = [...this.chips];
     },
+
+    deletePart(part) {
+      this.$partsService.delete(this.$partsService.find(part.id));
+      this.getAllStages();
+    },
+
+    saveNewStage() {
+      console.log(this.stage.editedItem);
+      this.$partsService.create(this.stage.editedItem);
+      this.getAllStages();
+    },
+
+    saveEditStage(part) {
+      console.log(part);
+      this.$partsService.update(part.id, part);
+      this.getAllStages();
+    },
+
+    getAllStages() {
+      this.stages = this.$partsService.all().map((x) => ({
+        id: x.id,
+        title: x.title,
+        location: x.location.title,
+        inputs: x.inputs.map((x) => x.input.title).toString(),
+        productionTimeInHours: x.productionTimeInHours,
+      }));
+    },
   },
   mounted() {
     this.product = this.$productService.find(this.$route.params.id);
+    this.getAllStages();
+    this.inputs = this.$inputsService.all().map((x) => x.title);
+    this.locations = this.$locationService.all().map((x) => x.title);
+    this.accessories = this.$accessoriesService.all().map((x) => x.title);
   },
 };
 </script>
