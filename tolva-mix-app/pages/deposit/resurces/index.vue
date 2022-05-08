@@ -1,11 +1,11 @@
 <template>
   <MySection title="Recursos disponibles">
-    <MyTable :items="steels" @click:row="showQualityControl">
+    <MyTable :items="steels" :search="search">
       <template v-slot:top>
         <v-toolbar flat>
           <v-spacer></v-spacer>
           <v-text-field
-            v-model="steelSearch"
+            v-model="search"
             class="ma-4"
             append-icon="mdi-magnify"
             label="Buscar"
@@ -135,7 +135,7 @@ export default {
   },
   layout: "deposit",
   data: () => ({
-    steelSearch: "",
+    search: "",
     // definir Base de datos de recursos
     steels: [
       {

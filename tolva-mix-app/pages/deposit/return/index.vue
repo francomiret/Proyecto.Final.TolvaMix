@@ -1,10 +1,8 @@
 <template>
-  <v-card>
-    <v-data-table :headers="headers" :items="returns" :search="search">
+  <MySection title="Devoluciones Pendientes">
+    <MyTable :items="returns" :search="search">
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Devoluciones Pendientes</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -21,49 +19,54 @@
         </v-chip>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn small text color="primary" @click="returnItem(item)">
-          DEVOLVER
-        </v-btn>
+        <TheFormDialog @confirm="returnItemConfirmation(item)">
+          <template #activator="{ on }">
+            <v-btn small text color="primary" v-on="on"> DEVOLVER </v-btn>
+          </template>
+          <v-form>
+            <h1>Devolver recurso</h1>
+            <v-text-field
+              v-model="itemReturned.quantity"
+              label="Cantidad"
+              type="number"
+            ></v-text-field>
+          </v-form>
+        </TheFormDialog>
       </template>
-    </v-data-table>
-    <v-dialog v-model="dialog" max-width="500px">
-      <v-card>
-        <v-card-subtitle class="text-h5"
-          >¿Esta seguro que desea devolver este recurso?</v-card-subtitle
-        >
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeReturn"
-            >CANCELAR</v-btn
-          >
-          <v-btn color="blue darken-1" text @click="returnItemConfirmation"
-            >CONFIRMAR</v-btn
-          >
-          <v-spacer></v-spacer>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-card>
+    </MyTable>
+  </MySection>
 </template>
 
 <script>
+import TheFormDialog from "~/components/base/dialogs/TheFormDialog";
+import TheDialog from "~/components/base/dialogs/TheDialog";
+import MySection from "~/components/base/MySection";
+import MyTable from "~/components/base/MyTable";
+
 export default {
+  components: {
+    MyTable,
+    MySection,
+    TheFormDialog,
+    TheDialog,
+  },
   layout: "deposit",
   data() {
     return {
       search: "",
-      dialog: false,
-      returnedId: null,
+      itemReturned: {
+        quantity: 1,
+      },
       returns: [
         {
-          workerName: "Roberto Perez",
-          quantity: "1",
           type: "Herramienta",
+          workerName: "Roberto Perez",
+          workerId: 1,
           resurceName: "Taladro",
           brand: "Bosch",
           model: "SuperTaladro",
+          quantity: "1",
           returnDate: Date.now(),
-          workerId: 1,
         },
         {
           workerName: "Juan Perez",
@@ -106,32 +109,11 @@ export default {
           workerId: 4,
         },
       ],
-      headers: [
-        { text: "", value: "type" },
-        { text: "Nombre Operario", value: "workerName" },
-        { text: "Legajo", value: "workerId" },
-        { text: "Cantidad", value: "quantity" },
-        { text: "Tipo de Recurso", value: "resurceName" },
-        { text: "Marca", value: "brand" },
-        { text: "Modelo", value: "model" },
-        { text: "Fecha de retiro", value: "returnDate", type: "date" },
-        { text: "", value: "actions" },
-      ],
     };
   },
   methods: {
-    closeReturn() {
-      this.dialog = false;
-    },
-
-    returnItemConfirmation() {
-      this.returns.splice(this.returnedId, 1);
-      this.closeReturn();
-    },
-
-    returnItem(item) {
-      this.returnedId = this.returns.indexOf(item);
-      this.dialog = true;
+    returnItemConfirmation(item) {
+      this.returns.splice(this.returns.indexOf(item), 1);
     },
 
     getColor(type) {
