@@ -244,6 +244,89 @@ export default class DB {
       id: 7,
       title: 'Tornillo de 1/2"',
     },
+    {
+      id: 8,
+      title: "Bulones",
+    },
+    {
+      id: 9,
+      title: "Acople rapido hembra",
+    },
+    {
+      id: 10,
+      title: "Guantes",
+    },
+    {
+      id: 11,
+      title: "Alabre de soldadora",
+    },
+    {
+      id: 12,
+      title: "Alambre",
+    },
+    {
+      id: 13,
+      title: "Mechas de taladro",
+    },
+    {
+      id: 14,
+      title: "Bolilleros",
+    },
+    {
+      id: 15,
+      title: "Electrodos",
+    },
+    {
+      id: 16,
+      title: "Tornillos",
+    },
+    {
+      id: 17,
+      title: "Arandelas",
+    },
+    {
+      id: 18,
+      title: "Grasa",
+    },
+  ];
+
+  accessories = [
+    {
+      id: 1,
+      title: "Guardabarros redondos con pantallas de goma",
+    },
+    {
+      id: 2,
+      title: "Cajón para herramientas",
+    },
+    {
+      id: 3,
+      title: "Bandas reflectivas perimetrales reglamentarias",
+    },
+    {
+      id: 4,
+      title: "Luces reglamentarias",
+    },
+    {
+      id: 5,
+      title: "Escalera aérea",
+    },
+    {
+      id: 6,
+      title: "Pasarela antideslizante",
+    },
+    {
+      id: 7,
+      title: "Soporte de rueda de auxilio tipo canasto doble",
+    },
+    {
+      id: 8,
+      title: "Tanque para agua",
+    },
+    {
+      id: 9,
+      title: "Acelerador de mano",
+    },
   ];
 
   parts = [
