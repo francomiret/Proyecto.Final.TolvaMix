@@ -1,9 +1,10 @@
 <template>
   <MySection title="Lista de Recursos">
-    <v-tabs v-model="tab" centered dark icons-and-text>
+    <v-tabs v-model="tab" centered  icons-and-text>
       <v-tab href="#tab-1"> Recursos disponibles </v-tab>
       <v-tab href="#tab-2"> Devoluciones Pendientes </v-tab>
     </v-tabs>
+    <v-divider></v-divider>
     <v-tabs-items v-model="tab">
       <v-tab-item value="tab-1">
         <MyTable :items="steels" :search="search">
