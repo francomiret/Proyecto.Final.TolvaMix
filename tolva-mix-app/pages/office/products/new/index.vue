@@ -342,8 +342,8 @@
             </v-form>
           </TheFormDialog>
           <TheConfirmDialog
-            header-message="Eliminar producto"
-            body-message="¿Desea eliminar este producto?"
+            header-message="Eliminar etapa"
+            body-message="¿Desea eliminar esta etapa?"
             @confirm="deletePart(item)"
           >
             <template #activator="{ on }">
