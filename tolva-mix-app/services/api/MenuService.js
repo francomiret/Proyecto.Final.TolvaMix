@@ -53,6 +53,11 @@ export default class MenuService {
         title: "Registrar Devolución",
         to: "/deposit/return",
       },
+      {
+        icon: "mdi-cart-arrow-down",
+        title: "Armar Carrito",
+        to: "/deposit/listResurcesByWorkStation",
+      },
     ];
   }
 }
