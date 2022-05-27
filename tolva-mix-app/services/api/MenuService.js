@@ -45,13 +45,8 @@ export default class MenuService {
     return [
       {
         icon: "mdi-table",
-        title: "Recursos Disponibles",
+        title: "Lista de Recursos",
         to: "/deposit/resurces",
-      },
-      {
-        icon: "mdi-keyboard-return",
-        title: "Registrar Devolución",
-        to: "/deposit/return",
       },
     ];
   }
