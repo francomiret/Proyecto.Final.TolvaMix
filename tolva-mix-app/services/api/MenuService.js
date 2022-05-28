@@ -3,7 +3,7 @@ export default class MenuService {
     return [
       {
         icon: "mdi-calendar-search",
-        title: "Consultar Fecha de Entrega",
+        title: "Consultar Productos",
         to: "/sales/create",
       },
       {

@@ -158,10 +158,12 @@ export default class DB {
     {
       id: 1,
       title: "Juan Pérez",
+      cuit: '20-12345678-9'
     },
     {
       id: 2,
       title: "Rodrigo Sanchez",
+      cuit: '21-987654321-8'
     },
   ];
 
