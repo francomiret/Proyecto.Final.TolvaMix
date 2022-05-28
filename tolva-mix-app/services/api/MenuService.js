@@ -20,11 +20,6 @@ export default class MenuService {
         title: "Comenzar Trabajo",
         to: "/production/work",
       },
-      {
-        icon: "mdi-pipe-wrench",
-        title: "Ajustes de Calidad",
-        to: "/",
-      },
     ];
   }
   getOfficeMenu() {
