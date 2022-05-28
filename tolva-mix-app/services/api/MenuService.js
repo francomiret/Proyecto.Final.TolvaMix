@@ -48,19 +48,11 @@ export default class MenuService {
         title: "Lista de Recursos",
         to: "/deposit/resurces",
       },
-<<<<<<< HEAD
-      {
-        icon: "mdi-keyboard-return",
-        title: "Registrar Devolución",
-        to: "/deposit/return",
-      },
       {
         icon: "mdi-cart-arrow-down",
         title: "Armar Carrito",
-        to: "/deposit/listResurcesByWorkStation",
+        to: "/deposit/cart-preparation",
       },
-=======
->>>>>>> efa688e4fed4df4acfc13f06b9893eee4ba61205
     ];
   }
 }
