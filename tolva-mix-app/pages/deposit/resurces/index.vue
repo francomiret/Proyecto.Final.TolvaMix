@@ -1,7 +1,7 @@
 <template>
   <MySection title="Lista de Recursos">
     <v-card>
-      <v-tabs v-model="tab" centered >
+      <v-tabs v-model="tab" centered>
         <v-tab href="#tab-1"> Recursos disponibles </v-tab>
         <v-tab href="#tab-2"> Devoluciones Pendientes </v-tab>
       </v-tabs>
@@ -68,16 +68,22 @@
               </template>
               <v-form>
                 <h1>Retirar recurso</h1>
-                <v-text-field
-                  v-model="steel.takeItem.quantity"
-                  label="Cantidad"
-                  type="number"
-                ></v-text-field>
-                <v-text-field
-                  v-model="steel.takeItem.workerId"
-                  label="Legajo Operario"
-                  type="number"
-                ></v-text-field>
+                <template>
+                  <div style="margin-top: 10px">
+                    <v-text-field
+                      v-model="steel.takeItem.quantity"
+                      label="Cantidad"
+                      type="number"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="steel.takeItem.workerId"
+                      label="Legajo Operario"
+                      type="number"
+                      outlined
+                    ></v-text-field>
+                  </div>
+                </template>
               </v-form>
             </TheFormDialog>
             <TheFormDialog @confirm="editConfirm()">
@@ -160,11 +166,17 @@
               </template>
               <v-form>
                 <h1>Devolver recurso</h1>
-                <v-text-field
-                  v-model="itemReturned.quantity"
-                  label="Cantidad"
-                  type="number"
-                ></v-text-field>
+                <template>
+                  <div style="margin-top: 10px">
+                    <v-text-field
+                      outlined
+                      v-model="itemReturned.quantity"
+                      label="Cantidad"
+                      type="number"
+                    >
+                    </v-text-field>
+                  </div>
+                </template>
               </v-form>
             </TheFormDialog>
           </template>

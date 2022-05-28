@@ -27,7 +27,7 @@
         >
           Pausar
         </v-btn>
-        <h1 style="margin-left: 10px">00:00</h1>
+        <h1 style="margin-left: 10px">00:00 Hs.</h1>
         <v-spacer></v-spacer>
         <v-btn color="primary" depressed to="work/issue-report/">
           Registrar inconveniente
@@ -36,7 +36,7 @@
 
       <v-window v-model="step">
         <v-container>
-          <MyInfo> Descripción del trabajo a realizar </MyInfo>
+          <!-- <MyInfo> Descripción del trabajo a realizar </MyInfo> -->
           <div v-for="(item, i) in Object.keys(steps).length + 1" :key="i">
             <v-window-item :value="i">
               <MyTable :items="returns"> </MyTable>
