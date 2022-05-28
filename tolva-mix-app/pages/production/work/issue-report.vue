@@ -1,7 +1,7 @@
 <template>
   <MySection title="Reportar inconveniente">
     <v-select
-      v-model="issues"
+      v-model="recursosFaltantes"
       multiple
       chips
       :items="
@@ -10,20 +10,21 @@
       label="Recurso faltante"
       outlined
     ></v-select>
-    <div style="margin-top: 10px">
-      <TheConfirmDialog
-        header-message="Reportar inconveniente"
-        body-message="¿Desea reportar los inconvenientes?"
-        @confirm="finalizar()"
-      >
-        <template #activator="{ on }">
-          <v-btn v-on="on" color="primary" depressed :disabled="!issues.length">
-            Reportar
-          </v-btn>
-        </template>
-      </TheConfirmDialog>
-      <v-btn to="/production/work" depressed> Cancelar </v-btn>
-    </div>
+    <v-select
+      v-model="recursosRotos"
+      multiple
+      chips
+      :items="
+        returns.map((x) => x.resurceName + '  ' + x.brand + '  ' + x.model)
+      "
+      label="Recurso rotos"
+      outlined
+    ></v-select>
+    <TheActionsBar
+      saveText="Reportar"
+      @save="finalizar"
+      @cancel="clickCancel"
+    />
   </MySection>
 </template>
 
@@ -34,10 +35,12 @@ import TheConfirmDialog from "~/components/base/dialogs/TheConfirmDialog";
 import TheDialog from "~/components/base/dialogs/TheDialog";
 import MyInfo from "~/components/base/MyInfo";
 import TheFormDialog from "~/components/base/dialogs/TheFormDialog";
+import TheActionsBar from "~/components/base/buttons/TheActionsBar";
 
 export default {
   components: {
     MyTable,
+    TheActionsBar,
     TheFormDialog,
     MyInfo,
     MySection,
@@ -47,7 +50,8 @@ export default {
   layout: "production",
   data() {
     return {
-      issues: [],
+      recursosFaltantes: [],
+      recursosRotos: [],
       pause: true,
       step: 1,
       search: "",
@@ -98,7 +102,11 @@ export default {
 
   methods: {
     finalizar() {
-      console.log(this.issues);
+      console.log(this.recursosFaltantes);
+      console.log(this.recursosRotos);
+      this.$router.push(`/production/work`);
+    },
+    clickCancel() {
       this.$router.push(`/production/work`);
     },
   },
