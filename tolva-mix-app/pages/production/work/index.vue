@@ -29,10 +29,10 @@
         </v-btn>
         <h1 style="margin-left: 10px">00:00</h1>
         <v-spacer></v-spacer>
-        <v-btn color="primary" depressed> Registrar inconveniente </v-btn>
+        <v-btn color="primary" depressed to="work/issue-report/">
+          Registrar inconveniente
+        </v-btn>
       </v-card-actions>
-
-      <!-- <v-divider></v-divider> -->
 
       <v-window v-model="step">
         <v-container>
@@ -50,8 +50,8 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <TheConfirmDialog
-          header-message="Finalizar preparación de recursos"
-          body-message="¿Desea finalizar la preparación de recursos para la jornada laboral?"
+          header-message="Finalizar producción"
+          body-message="¿Desea finalizar la producción de la Órden de Producción actual?"
           @confirm="finalizar()"
         >
           <template #activator="{ on }">
@@ -83,7 +83,6 @@ export default {
     return {
       pause: true,
       step: 1,
-      search: "",
       itemReturned: {
         quantity: 1,
       },
@@ -133,13 +132,10 @@ export default {
     finalizar() {
       if (Object.keys(this.steps).length !== this.step) {
         this.step++;
+        this.pause = true;
       } else {
         console.log("finalizado");
       }
-    },
-    getColor(type) {
-      if (type === "Herramienta") return "blue";
-      else return "green";
     },
   },
 };
