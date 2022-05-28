@@ -1,5 +1,5 @@
 <template>
-  <MySection title="Producción">
+  <MySection :title="title">
     <v-card class="mx-auto">
       <v-card-title class="text-h6 font-weight-regular justify-space-between">
         <span> Órden de Producción N° {{ steps[step].code }}</span>
@@ -27,19 +27,30 @@
         >
           Pausar
         </v-btn>
-        <h1 style="margin-left: 10px">00:00 Hs.</h1>
+        <h1 style="margin-left: 10px">00:00:00 Hs.</h1>
         <v-spacer></v-spacer>
         <v-btn color="primary" depressed to="work/issue-report/">
           Registrar inconveniente
         </v-btn>
       </v-card-actions>
 
-      <v-window v-model="step">
+      <v-window v-model="step" v-if="!steps[step].isRework">
         <v-container>
-          <!-- <MyInfo> Descripción del trabajo a realizar </MyInfo> -->
           <div v-for="(item, i) in Object.keys(steps).length + 1" :key="i">
             <v-window-item :value="i">
+              <MyInfo> Descripción del trabajo a realizar </MyInfo>
+              <h3>Lista de insumos</h3>
               <MyTable :items="returns"> </MyTable>
+            </v-window-item>
+          </div>
+        </v-container>
+      </v-window>
+      <v-window v-model="step" v-else>
+        <v-container>
+          <div v-for="(item, i) in Object.keys(steps).length + 1" :key="i">
+            <v-window-item :value="i">
+              <h3>Mejoras a realizar</h3>
+              <MyTable :items="qaReport"> </MyTable>
             </v-window-item>
           </div>
         </v-container>
@@ -89,25 +100,32 @@ export default {
       steps: {
         1: {
           code: "0001",
+          isRework: false,
         },
         2: {
           code: "0002",
+          isRework: true,
         },
         3: {
           code: "0003",
+          isRework: false,
         },
         4: {
           code: "0004",
+          isRework: true,
         },
         5: {
           code: "0005",
+          isRework: false,
         },
 
         6: {
           code: "0006",
+          isRework: true,
         },
         7: {
           code: "0007",
+          isRework: false,
         },
       },
 
@@ -125,7 +143,29 @@ export default {
           model: "",
         },
       ],
+      qaReport: [
+        {
+          title: "Soldadura",
+          status: "Rechazada",
+          justification: "Puntos desprolijos, mala union",
+        },
+        {
+          title: "Calado",
+          status: "Rechazada",
+          justification: "Desprolijo",
+        },
+      ],
     };
+  },
+
+  computed: {
+    title() {
+      if (this.steps[this.step].isRework) {
+        return "Ajuste de calidad";
+      } else {
+        return "Producción";
+      }
+    },
   },
 
   methods: {
