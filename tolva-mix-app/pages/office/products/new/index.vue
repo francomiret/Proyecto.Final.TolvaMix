@@ -302,7 +302,9 @@
         <template v-slot:item.actions="{ item }">
           <TheFormDialog @confirm="saveEditStage(item)">
             <template #activator="{ on }">
-              <v-btn small text color="success" v-on="on"> EDITAR </v-btn>
+              <v-btn small icon color="success" v-on="on">
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
             </template>
             <!-- Mover formulario a un componente aparte -->
             <v-form>
@@ -347,7 +349,9 @@
             @confirm="deletePart(item)"
           >
             <template #activator="{ on }">
-              <v-btn small text color="error" v-on="on"> BORRAR </v-btn>
+              <v-btn small icon color="error" v-on="on">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
             </template>
           </TheConfirmDialog>
         </template>
@@ -369,11 +373,6 @@ import MyTable from "@/components/base/MyTable";
 import TheConfirmDialog from "@/components/base/dialogs/TheConfirmDialog";
 import TheFormDialog from "~/components/base/dialogs/TheFormDialog";
 import TheDialog from "~/components/base/dialogs/TheDialog";
-import { PartsService } from "@/services/api/PartsService";
-import { ProductService } from "@/services/api/ProductService";
-import { InputsService } from "@/services/api/InputsService";
-import { LocationService } from "@/services/api/LocationService";
-import { AccessoriesService } from "@/services/api/AccessoriesService";
 
 export default {
   components: {

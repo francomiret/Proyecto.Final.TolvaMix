@@ -25,11 +25,11 @@
       <template v-slot:item.actions="{ item }">
         <v-btn
           small
-          text
+          icon
           color="success"
           :to="`/office/products/edit/${item.id}`"
         >
-          EDITAR
+          <v-icon>mdi-pencil</v-icon>
         </v-btn>
         <TheConfirmDialog
           header-message="Eliminar producto"
@@ -37,7 +37,9 @@
           @confirm="deleteProduct(item)"
         >
           <template #activator="{ on }">
-            <v-btn small text color="error" v-on="on"> BORRAR </v-btn>
+            <v-btn small icon color="error" v-on="on">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
           </template>
         </TheConfirmDialog>
       </template>
