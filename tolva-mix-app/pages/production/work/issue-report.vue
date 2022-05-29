@@ -21,7 +21,7 @@
       outlined
     ></v-select>
     <TheActionsBar
-      saveText="Reportar"
+      saveText="Registrar"
       @save="finalizar"
       @cancel="clickCancel"
     />
