@@ -1,5 +1,5 @@
 <template>
-  <MySection title="Carritos Pendientes">
+  <MySection title="Preparación de recursos">
     <v-card class="mx-auto">
       <v-card-title class="text-h6 font-weight-regular justify-space-between">
         <span> Estación de Trabajo {{ steps[step].code }}</span>
