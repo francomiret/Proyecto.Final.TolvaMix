@@ -12,7 +12,8 @@ export default class DB {
   products = [
     {
       id: 1,
-      title: "Mono Eje Hidráulica para Tractor",
+      title: 'Tolva - Mono Eje Hidráulica para Tractor',
+      name: "Mono Eje Hidráulica para Tractor",
       nextAvailableDate: "2022-06-21",
       type: "Tolva",
       chargeCapacity: 3870,
@@ -43,7 +44,8 @@ export default class DB {
     },
     {
       id: 2,
-      title: "Doble Eje Hidráulica para Tractor",
+      title: 'Tolva - Doble Eje Hidráulica para Tractor',
+      name: "Doble Eje Hidráulica para Tractor",
       type: "Tolva",
       nextAvailableDate: "2022-04-21",
       chargeCapacity: 3870,
@@ -74,7 +76,8 @@ export default class DB {
     },
     {
       id: 3,
-      title: "10 toneladas",
+      title: 'Tolva - 10 toneladas',
+      name: "10 toneladas",
       nextAvailableDate: "2022-03-26",
       type: "Tolva",
       chargeCapacity: 3870,
@@ -114,7 +117,8 @@ export default class DB {
     },
     {
       id: 4,
-      title: "10 toneladas con balanza",
+      title: 'Tolva - 10 toneladas con balanza',
+      name: "10 toneladas con balanza",
       nextAvailableDate: "2022-05-01",
       type: "Tolva",
       chargeCapacity: 3870,
@@ -157,28 +161,48 @@ export default class DB {
   clients = [
     {
       id: 1,
-      title: "Juan Pérez",
-      cuit: '20-12345678-9'
+      title: 'Juan Pérez - CUIT: 20-12345678-9',
+      name: 'Juan Pérez',
+      cuit: '20-12345678-9',
     },
     {
       id: 2,
-      title: "Rodrigo Sanchez",
-      cuit: '21-987654321-8'
+      title: 'Rodrigo Sanchez - CUIT: 21-987654321-8',
+      name: 'Rodrigo Sanchez',
+      cuit: '21-987654321-8',
     },
   ];
 
   sales = [
     {
       id: 1,
+      number: '00001',
+      status: 'Pagada',
+      title: '(#00001) ' + this.products[0].title,
       product: this.products[0],
-      deliveryDate: "2022-06-21",
+      deliveryDate: '2022-06-21',
       client: this.clients[0],
+      progress: '5.22'
     },
     {
-      id: 1,
+      id: 2,
+      number: '00002',
+      status: 'Pagada',
+      title: '(#00002) ' + this.products[1].title,
       product: this.products[1],
-      deliveryDate: "2022-07-03",
+      deliveryDate: '2022-07-03',
       client: this.clients[1],
+      progress: '67.25'
+    },
+    {
+      id: 3,
+      number: '00003',
+      status: 'Pendiente de confirmación',
+      title: '(#00003) ' + this.products[2].title,
+      product: this.products[2],
+      deliveryDate: '2022-09-03',
+      client: this.clients[1],
+      progress: '0.00'
     },
   ];
 

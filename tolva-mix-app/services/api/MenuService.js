@@ -8,7 +8,7 @@ export default class MenuService {
       },
       {
         icon: "mdi-account-search",
-        title: "Consultar Ventas",
+        title: "Consultar Reservas",
         to: "/sales/query",
       },
     ];

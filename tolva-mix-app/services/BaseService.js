@@ -73,6 +73,7 @@ export default class BaseService {
   create(item) {
     item.id = this.items.length + 2
     this.items.push(item)
+    return item
   }
 
   delete(item) {

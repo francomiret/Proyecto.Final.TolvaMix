@@ -52,11 +52,7 @@ export default {
     }
   },
   mounted() {
-    this.products = this.$productService.all().map((p) => ({
-      id: p.id,
-      title: p.type + ' - ' + p.title,
-      nextAvailableDate: p.nextAvailableDate
-    }))
+    this.products = this.$productService.all()
   },
   methods: {
     clickConfirm() {

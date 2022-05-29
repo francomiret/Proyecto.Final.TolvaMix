@@ -1,6 +1,6 @@
 <template>
   <div v-if="item">
-    <MySection :title="'Reservar: ' + item.type + ' - ' + item.title">
+    <MySection :title="'Reservar: ' + item.title">
       <MyInfo>Disponible a partir del {{ item.nextAvailableDate }}, por favor seleccione el cliente y la fecha de entrega</MyInfo>
       <TheFormDialog header-message="Crear Cliente" @confirm="createClient">
         <template #activator="{on}">
@@ -39,8 +39,20 @@
       <TheActionsBar
         save-text="Reservar"
         @cancel="clickCancel"
-        @save="clickCancel"
+        @save="clickReserve"
       />
+      <TheDialog header-message="Reserva creada con éxito" v-model="showNewSaleResult" @cancel="goToHome">
+        <v-card-text>
+          Número de reserva: {{ newSale.number }}
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <ThePrimaryButton
+            inner-text="Aceptar"
+            @click="goToHome"
+          />
+        </v-card-actions>
+      </TheDialog>
     </MySection>
   </div>
 </template>
@@ -53,8 +65,9 @@ import MyAutocomplete from '@/components/base/input/MyAutocomplete'
 import MyTextField from '@/components/base/input/MyTextField'
 import ThePrimaryButton from '@/components/base/buttons/ThePrimaryButton'
 import TheFormDialog from "@/components/base/dialogs/TheFormDialog";
+import TheDialog from "@/components/base/dialogs/TheDialog";
 export default {
-  components: {TheFormDialog, ThePrimaryButton, MyTextField, MyAutocomplete, MySection, TheActionsBar, MyInfo},
+  components: {TheDialog, TheFormDialog, ThePrimaryButton, MyTextField, MyAutocomplete, MySection, TheActionsBar, MyInfo},
   layout: 'sales',
   data() {
     return {
@@ -68,36 +81,34 @@ export default {
       },
       selectedClient: '',
       date: '',
+      newSale: { number: '' },
+      showNewSaleResult: false
     }
   },
   mounted() {
     this.item = this.$productService.find(this.$route.params.product)
-    this.clients = this.$clientService.all().map(this.mapClient)
+    this.clients = this.$clientService.all()
     this.date = this.item.nextAvailableDate
   },
   methods: {
-    mapClient(client) {
-      return {
-        id: client.id,
-        title: client.title + ' - CUIT: ' + client.cuit
-      }
-    },
     clickCancel() {
       this.$router.back()
     },
     clickReserve() {
-      this.$salesService.create({
+      this.newSale = this.$salesService.create({
         client: this.selectedClient,
         deliveryDate: this.date,
         product: this.item,
       })
-      this.$ioService.toast('La reserva fue creada con éxito!')
-      this.$router.push({path: '/sales/query'})
+      this.showNewSaleResult = true
     },
     createClient() {
-      const client = this.mapClient(this.newClient)
-      this.clients.push(client)
-      this.selectedClient = client
+      this.newClient = this.$clientService.create(this.newClient)
+      this.clients.push(this.newClient)
+      this.selectedClient = this.newClient
+    },
+    goToHome() {
+      this.$router.push({path: '/sales/query'})
     }
   }
 }
