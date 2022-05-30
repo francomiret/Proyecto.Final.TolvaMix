@@ -67,15 +67,26 @@
                 <v-btn small text color="primary" v-on="on"> RETIRAR </v-btn>
               </template>
               <v-form>
-                <h1>Retirar recurso</h1>
-                <template>
+                <h1>Retirar {{ item.select }} {{ item.brand }}</h1>
+                <template v-if="item.type === `Insumo`">
                   <div style="margin-top: 10px">
                     <v-text-field
                       v-model="steel.takeItem.quantity"
                       label="Cantidad"
                       type="number"
+                      :suffix="item.unit"
                       outlined
                     ></v-text-field>
+                    <v-text-field
+                      v-model="steel.takeItem.workerId"
+                      label="Legajo Operario"
+                      type="number"
+                      outlined
+                    ></v-text-field>
+                  </div>
+                </template>
+                <template v-else>
+                  <div style="margin-top: 10px">
                     <v-text-field
                       v-model="steel.takeItem.workerId"
                       label="Legajo Operario"
@@ -164,18 +175,20 @@
               <template #activator="{ on }">
                 <v-btn small text color="primary" v-on="on"> DEVOLVER </v-btn>
               </template>
-              <v-form>
-                <h1>Devolver recurso</h1>
-                <template>
+               <v-form>
+                <h1>Devolver {{ item.resurceName }} {{ item.brand }}</h1>
+                <template v-if="item.type === `Insumo`">
                   <div style="margin-top: 10px">
-                    <v-text-field
+                     <v-text-field
                       outlined
                       v-model="itemReturned.quantity"
                       label="Cantidad"
                       type="number"
-                    >
-                    </v-text-field>
+                    ></v-text-field>
                   </div>
+                </template>
+                <template v-else>
+                 <span>¿Desea devolver la herramienta {{ item.resurceName }} {{ item.brand }} ?</span>
                 </template>
               </v-form>
             </TheFormDialog>
@@ -236,26 +249,26 @@ export default {
         returnDate: new Date().toLocaleDateString(),
         workerId: 3,
       },
-      {
-        workerName: "Ruben Perez",
-        quantity: "50",
-        type: "Insumo",
-        resurceName: "Alambre",
-        brand: "Bosch",
-        model: "SuperAmoladora",
-        returnDate: new Date().toLocaleDateString(),
-        workerId: 4,
-      },
-      {
-        workerName: "Ruben Perez",
-        quantity: "50",
-        type: "Insumo",
-        resurceName: "Alambre",
-        brand: "San Martin",
-        model: "",
-        returnDate: new Date().toLocaleDateString(),
-        workerId: 4,
-      },
+      // {
+      //   workerName: "Ruben Perez",
+      //   quantity: "50",
+      //   type: "Insumo",
+      //   resurceName: "Alambre",
+      //   brand: "Bosch",
+      //   model: "SuperAmoladora",
+      //   returnDate: new Date().toLocaleDateString(),
+      //   workerId: 4,
+      // },
+      // {
+      //   workerName: "Ruben Perez",
+      //   quantity: "50",
+      //   type: "Insumo",
+      //   resurceName: "Alambre",
+      //   brand: "San Martin",
+      //   model: "",
+      //   returnDate: new Date().toLocaleDateString(),
+      //   workerId: 4,
+      // },
     ],
     search: "",
     // definir Base de datos de recursos

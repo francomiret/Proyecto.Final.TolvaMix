@@ -2,7 +2,7 @@
   <MySection :title="title">
     <v-card class="mx-auto">
       <v-card-title class="text-h6 font-weight-regular justify-space-between">
-        <span> Órden de Producción N° {{ steps[step].code }}</span>
+        <span> Orden de Producción N° {{ steps[step].code }}</span>
       </v-card-title>
       <v-card-subtitle>
         <span>Estación de trabajo CP01 | Corte y Plegado</span>
@@ -33,13 +33,13 @@
           Registrar inconveniente
         </v-btn>
       </v-card-actions>
-
+      
       <v-window v-model="step" v-if="!steps[step].isRework">
         <v-container>
           <div v-for="(item, i) in Object.keys(steps).length + 1" :key="i">
             <v-window-item :value="i">
               <MyInfo> Descripción del trabajo a realizar </MyInfo>
-              <h3>Lista de insumos</h3>
+              <h3>Lista de recursos</h3>
               <MyTable :items="returns"> </MyTable>
             </v-window-item>
           </div>
@@ -62,7 +62,7 @@
         <v-spacer></v-spacer>
         <TheConfirmDialog
           header-message="Finalizar producción"
-          body-message="¿Desea finalizar la producción de la Órden de Producción actual?"
+          body-message="¿Desea finalizar la producción de la Orden de Producción actual?"
           @confirm="finalizar()"
         >
           <template #activator="{ on }">
@@ -140,6 +140,18 @@ export default {
           quantity: "5",
           resurceName: "Alambre",
           brand: "San Martin",
+          model: "",
+        },
+        {
+          quantity: "1",
+          resurceName: "Soldadora",
+          brand: "Stanley",
+          model: "",
+        },
+        {
+          quantity: "1",
+          resurceName: "Amoladora",
+          brand: "Stanley",
           model: "",
         },
       ],
