@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Ventas</h1>
+    <h1>Reservas</h1>
     <MyList :items="menu" />
   </v-container>
 </template>

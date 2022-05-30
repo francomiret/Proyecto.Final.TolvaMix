@@ -10,7 +10,7 @@ export default {
   components: {MyNavBar},
   data() {
     return {
-      title: "Tolva Mix | Oficina Técnica",
+      title: "Brokk | Oficina Técnica",
     };
   },
   computed: {

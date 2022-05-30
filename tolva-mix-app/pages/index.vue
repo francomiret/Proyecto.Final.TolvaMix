@@ -37,7 +37,7 @@ export default {
         },
         {
           id: 2,
-          name: "Ventas",
+          name: "Reservas",
           icon: "mdi-account-cash",
           to: "/sales",
         },
