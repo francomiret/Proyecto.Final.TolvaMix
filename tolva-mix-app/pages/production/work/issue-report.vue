@@ -2,24 +2,19 @@
   <MySection title="Reportar inconveniente">
     <v-select
       v-model="recursosFaltantes"
-      multiple
-      chips
-      :items="
-        returns.map((x) => x.resurceName + '  ' + x.brand + '  ' + x.model)
-      "
-      label="Recurso faltante"
+      :items="['Faltante', 'Rotura']"
+      label="Tipo de inconveniente"
       outlined
     ></v-select>
     <v-select
       v-model="recursosRotos"
-      multiple
-      chips
       :items="
         returns.map((x) => x.resurceName + '  ' + x.brand + '  ' + x.model)
       "
-      label="Recurso rotos"
+      label="Recurso"
       outlined
     ></v-select>
+    <v-textarea outlined v-model="detalle" label="Detalle" />
     <TheActionsBar
       saveText="Registrar"
       @save="finalizar"
@@ -55,6 +50,7 @@ export default {
       pause: true,
       step: 1,
       search: "",
+      detalle: "",
       itemReturned: {
         quantity: 1,
       },
