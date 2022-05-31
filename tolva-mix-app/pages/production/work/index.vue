@@ -5,7 +5,7 @@
         <span> Orden de Producción N° {{ steps[step].code }}</span>
       </v-card-title>
       <v-card-subtitle>
-        <span>Estación de trabajo CP01 | Corte y Plegado</span>
+        <span>Estación de trabajo M01 | {{ steps[step].area }}</span>
       </v-card-subtitle>
 
       <v-divider></v-divider>
@@ -27,13 +27,13 @@
         >
           Pausar
         </v-btn>
-        <h1 style="margin-left: 10px">00:00:00 Hs.</h1>
+        <h1 style="margin-left: 10px">01:10:50 Hs.</h1>
         <v-spacer></v-spacer>
         <v-btn color="primary" depressed to="work/issue-report/">
           Registrar inconveniente
         </v-btn>
       </v-card-actions>
-      
+
       <v-window v-model="step" v-if="!steps[step].isRework">
         <v-container>
           <div v-for="(item, i) in Object.keys(steps).length + 1" :key="i">
@@ -41,6 +41,10 @@
               <MyInfo> Descripción del trabajo a realizar </MyInfo>
               <h3>Lista de recursos</h3>
               <MyTable :items="returns"> </MyTable>
+              <div v-if="steps[step].needPieza">
+                <h3>Lista de piezas</h3>
+                <MyTable :items="piezas"> </MyTable>
+              </div>
             </v-window-item>
           </div>
         </v-container>
@@ -101,31 +105,26 @@ export default {
         1: {
           code: "0001",
           isRework: false,
+          needPieza: false,
+          area: "Corte y Plegado",
         },
         2: {
           code: "0002",
           isRework: true,
+          needPieza: false,
+          area: "Corte y Plegado",
         },
         3: {
           code: "0003",
           isRework: false,
+          needPieza: true,
+          area: "Montaje",
         },
         4: {
           code: "0004",
           isRework: true,
-        },
-        5: {
-          code: "0005",
-          isRework: false,
-        },
-
-        6: {
-          code: "0006",
-          isRework: true,
-        },
-        7: {
-          code: "0007",
-          isRework: false,
+          needPieza: false,
+          area: "Montaje",
         },
       },
 
@@ -153,6 +152,26 @@ export default {
           resurceName: "Amoladora",
           brand: "Stanley",
           model: "",
+        },
+      ],
+      piezas: [
+        {
+          name: "Chapa cortada y plegada",
+          area: "Corte y Plegado",
+          etCode: "CP01",
+          opCode: "0001",
+        },
+        {
+          name: "Pasarela",
+          opCode: "0003",
+          area: "Autopartes",
+          etCode: "A02",
+        },
+        {
+          name: "Chimango",
+          opCode: "0004",
+          area: "Autopartes",
+          etCode: "A03",
         },
       ],
       qaReport: [

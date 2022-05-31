@@ -96,6 +96,18 @@ export default {
           brand: "San Martin",
           model: "",
         },
+        {
+          quantity: "1",
+          resurceName: "Soldadora",
+          brand: "Stanley",
+          model: "",
+        },
+        {
+          quantity: "1",
+          resurceName: "Amoladora",
+          brand: "Stanley",
+          model: "",
+        },
       ],
     };
   },
