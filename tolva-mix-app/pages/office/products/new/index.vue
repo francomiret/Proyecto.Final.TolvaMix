@@ -4,7 +4,7 @@
     <v-row>
       <v-col>
         <v-select
-          filled
+          outlined
           v-model="product.type"
           :items="productType"
           label="Tipo de producto"
@@ -12,7 +12,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.title"
           label="Nombre"
         ></v-text-field>
@@ -21,7 +21,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.chargeCapacity"
           label="Capacidad de carga"
           suffix="Kgs"
@@ -30,7 +30,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.dischargeTime"
           label="Tiempo de descarga"
           suffix="Kgs/min"
@@ -39,7 +39,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.weight"
           label="Peso"
           suffix="Kgs"
@@ -50,7 +50,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.lenght"
           label="Largo total"
           suffix="mts"
@@ -59,7 +59,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.high"
           label="Alto total"
           suffix="mts"
@@ -68,7 +68,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.width"
           label="Ancho total"
           suffix="mts"
@@ -79,7 +79,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.usefulLength"
           label="Largo útil de carga"
           suffix="mts"
@@ -88,7 +88,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.usefulHigh"
           label="Alto útil de carga"
           suffix="mts"
@@ -97,7 +97,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.usefulWidth"
           label="Ancho útil de carga"
           suffix="mts"
@@ -108,7 +108,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.topTubeLength"
           label="Largo del tubo superior"
           suffix="mts"
@@ -117,7 +117,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.topTubeDiameter"
           label="Diámetro del tubo superior"
           suffix="mts"
@@ -126,7 +126,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.standpipeLength"
           label="Largo del tubo vertical"
           suffix="mts"
@@ -135,7 +135,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.standpipeDiameter"
           label="Diámetro del tubo vertical"
           suffix="mts"
@@ -166,7 +166,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.stakeHolder"
           label="Porta estacas"
           type="number"
@@ -174,7 +174,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.boquillas"
           label="Boquillas"
           type="number"
@@ -182,7 +182,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.winches"
           label="Malacates"
           type="number"
@@ -190,7 +190,7 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.arches"
           label="Arcos"
           type="number"
@@ -200,7 +200,7 @@
     <v-row>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.litersHydraulicPump"
           label="Bomba hidráulica"
           type="number"
@@ -209,14 +209,14 @@
       </v-col>
       <v-col>
         <v-text-field
-          filled
+          outlined
           v-model="product.pto"
           label="Toma de fuerza"
         ></v-text-field>
       </v-col>
     </v-row>
     <v-combobox
-      filled
+      outlined
       v-model="product.accessories"
       :items="accessories"
       chips

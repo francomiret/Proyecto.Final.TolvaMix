@@ -14,6 +14,7 @@
             <v-toolbar flat>
               <v-spacer></v-spacer>
               <v-text-field
+                outlined
                 v-model="search"
                 class="ma-4"
                 append-icon="mdi-magnify"
@@ -30,29 +31,35 @@
                 <v-form>
                   <h1>Nuevo recurso</h1>
                   <v-select
+                    outlined
                     v-model="steel.editedItem.select"
                     :items="steel.steelType"
                     label="Tipo de herramenta"
                   ></v-select>
                   <v-text-field
+                    outlined
                     v-model="steel.editedItem.brand"
                     label="Marca"
                   ></v-text-field>
                   <v-text-field
+                    outlined
                     v-model="steel.editedItem.model"
                     label="Modelo"
                   ></v-text-field>
                   <v-text-field
+                    outlined
                     v-model="steel.editedItem.quantity"
                     label="Cantidad"
                     type="number"
                   ></v-text-field>
                   <v-text-field
+                    outlined
                     v-model="steel.editedItem.id"
                     label="Código"
                     type="number"
                   ></v-text-field>
                   <v-text-field
+                    outlined
                     v-model="steel.editedItem.location"
                     label="Ubicación"
                     type="text"
@@ -79,8 +86,7 @@
                     ></v-text-field>
                     <v-text-field
                       v-model="steel.takeItem.workerId"
-                      label="Legajo Operario"
-                      type="number"
+                      label="Código de estación de trabajo"
                       outlined
                     ></v-text-field>
                   </div>
@@ -89,8 +95,7 @@
                   <div style="margin-top: 10px">
                     <v-text-field
                       v-model="steel.takeItem.workerId"
-                      label="Legajo Operario"
-                      type="number"
+                      label="Código de estación de trabajo"
                       outlined
                     ></v-text-field>
                   </div>
@@ -106,26 +111,35 @@
               <v-form>
                 <h1>Editar recurso</h1>
                 <v-select
+                  outlined
                   v-model="item.select"
                   :items="steel.steelType"
                   label="Tipo de herramenta"
                 ></v-select>
-                <v-text-field v-model="item.brand" label="Marca"></v-text-field>
                 <v-text-field
+                  outlined
+                  v-model="item.brand"
+                  label="Marca"
+                ></v-text-field>
+                <v-text-field
+                  outlined
                   v-model="item.model"
                   label="Modelo"
                 ></v-text-field>
                 <v-text-field
+                  outlined
                   v-model="item.quantity"
                   label="Cantidad"
                   type="number"
                 ></v-text-field>
                 <v-text-field
+                  outlined
                   v-model="item.id"
                   label="Código"
                   type="number"
                 ></v-text-field>
                 <v-text-field
+                  outlined
                   v-model="item.location"
                   label="Ubicación"
                   type="text"
@@ -157,6 +171,7 @@
             <v-toolbar flat>
               <v-spacer></v-spacer>
               <v-text-field
+                outlined
                 v-model="search"
                 append-icon="mdi-magnify"
                 label="Buscar"
@@ -175,11 +190,11 @@
               <template #activator="{ on }">
                 <v-btn small text color="primary" v-on="on"> DEVOLVER </v-btn>
               </template>
-               <v-form>
+              <v-form>
                 <h1>Devolver {{ item.resurceName }} {{ item.brand }}</h1>
                 <template v-if="item.type === `Insumo`">
                   <div style="margin-top: 10px">
-                     <v-text-field
+                    <v-text-field
                       outlined
                       v-model="itemReturned.quantity"
                       label="Cantidad"
@@ -188,7 +203,10 @@
                   </div>
                 </template>
                 <template v-else>
-                 <span>¿Desea devolver la herramienta {{ item.resurceName }} {{ item.brand }} ?</span>
+                  <span
+                    >¿Desea devolver la herramienta {{ item.resurceName }}
+                    {{ item.brand }} ?</span
+                  >
                 </template>
               </v-form>
             </TheFormDialog>

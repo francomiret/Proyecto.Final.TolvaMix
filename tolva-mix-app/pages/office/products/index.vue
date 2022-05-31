@@ -10,6 +10,7 @@
         <v-toolbar flat>
           <v-spacer></v-spacer>
           <v-text-field
+            outlined
             v-model="search"
             class="ma-4"
             append-icon="mdi-magnify"
